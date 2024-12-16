@@ -34,4 +34,18 @@ public class UserServiceIntegrationTest {
 
         verify(userRepository).findById(1L);
     }
+
+    @Test
+    public void createUserGoodTest(){
+        User user = new User();
+        user.setId(2L);
+        user.setName("Viktor");
+        user.setAge(22);
+        user.setEmail("viktor@mail.com");
+        given(userRepository.save(user)).willReturn(user);
+
+        userService.createUser(user);
+
+        verify(userRepository).save(user);
+    }
 }
